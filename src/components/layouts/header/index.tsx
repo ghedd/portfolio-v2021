@@ -11,6 +11,7 @@ import {
   Theme,
   Toolbar,
   Typography,
+  useMediaQuery,
 } from "@material-ui/core"
 import { Link } from "gatsby"
 import useScroll from "../../../hooks/useScroll"
@@ -23,6 +24,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ siteTitle, className }) => {
+  const matches = useMediaQuery("(min-width: 600px)")
   const { navFont } = useCustomTheme()
   const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -35,6 +37,12 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, className }) => {
         top: 50,
         boxShadow: "none",
       },
+      /*   toolBar: {
+        display: matches ? "inherit" : "none",
+      },
+      toolBarSmall: {
+        display: matches ? "none" : "inherit",
+      }, */
       navLinks: {
         "& > *": {
           fontFamily: navFont.typography.fontFamily,
@@ -94,6 +102,45 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, className }) => {
     },
   ]
 
+  const navBar = (
+    <Toolbar>
+      <Container maxWidth="lg">
+        <Grid container alignItems="center" justify="space-between">
+          <Grid item>
+            <Link to="/">
+              <Brand />
+            </Link>
+          </Grid>
+          <Grid item className={classes.navLinks}>
+            {navLinks.map(item => (
+              <Link key={item.nav} to={item.link} className="navLink">
+                {item.nav}
+              </Link>
+            ))}
+          </Grid>
+          <Grid item className={classes.socialMedia}>
+            {socialMedia.map(item => (
+              <a
+                key={item.nav}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferer"
+              >
+                <item.icon />
+              </a>
+            ))}
+          </Grid>
+        </Grid>
+      </Container>
+    </Toolbar>
+  )
+  const burgerMenu = (
+    <div>
+      <h4>burger here!</h4>
+    </div>
+  )
+  const navBarResponsive = <div>ResPonsive!</div>
+
   return (
     <header className={className} id="header">
       <AppBar
@@ -101,36 +148,7 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, className }) => {
           top >= 50 ? classes.appBar + "stickyNav" : classes.appBar
         }`}
       >
-        <Toolbar>
-          <Container maxWidth="lg">
-            <Grid container alignItems="center" justify="space-between">
-              <Grid item>
-                <Link to="/">
-                  <Brand />
-                </Link>
-              </Grid>
-              <Grid item className={classes.navLinks}>
-                {navLinks.map(item => (
-                  <Link key={item.nav} to={item.link} className="navLink">
-                    {item.nav}
-                  </Link>
-                ))}
-              </Grid>
-              <Grid item className={classes.socialMedia}>
-                {socialMedia.map(item => (
-                  <a
-                    key={item.nav}
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferer"
-                  >
-                    <item.icon />
-                  </a>
-                ))}
-              </Grid>
-            </Grid>
-          </Container>
-        </Toolbar>
+        {matches ? navBar : navBarResponsive}
       </AppBar>
     </header>
   )
