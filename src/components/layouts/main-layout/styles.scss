@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@400;500;600&display=swap');
+
+html,
+body {
+  margin: 0 auto;
+  width: 100%;
+}
+#main-layout {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: minmax(auto, 100px) 1fr minmax(auto, 100px);
+  // overflow: hidden;
+}
+#header {
+  grid-row: 1/2;
+  // background: pink;
+}
+#body {
+  grid-row: 2/3;
+  // background: green;
+  min-height: 90vh;
+}
+#footer {
+  grid-row: 3/4;
+  background: purple;
+}
