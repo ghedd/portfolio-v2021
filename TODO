@@ -3,5 +3,6 @@ Todo:
   ✔ create main grid layout @done(21-03-04 20:01)
   ✔ find out what causes overflow on small viewport - nothing! @done(21-03-05 20:52)
   ✔ add gatsby-plugin-react-svg @done(21-03-05 20:52)
-  ☐ create responsive header
+  ✔ create responsive header with mini brand logo & burger menu icon @done(21-03-07 23:00)
+  ✔ separate navbar from header @done(21-03-07 23:30)
   ☐ get back to hero decoration later

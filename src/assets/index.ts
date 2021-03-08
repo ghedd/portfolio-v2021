@@ -1,4 +1,6 @@
 export const Brand = require( "./Brand.svg" )
+export const BrandMobile = require( "./Brand_mobile.svg" )
 export const Github = require( "./contact_github.svg" )
 export const LinkedIn = require( "./contact_linkedin.svg" )
 export const Twitter = require( "./contact_twitter.svg" )
+export const MenuIcon = require( "./menu.svg" )

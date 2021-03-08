@@ -18,7 +18,7 @@ const useCustomTheme = () => {
       typography: {
         fontFamily: ["Open Sans", "san-serif"].join(),
         fontWeightBold: 600
-      }
+      },
     }
   )
   const customTitleFont = createMuiTheme(
@@ -33,7 +33,7 @@ const useCustomTheme = () => {
     {
       typography: {
         fontFamily: ["Oswald", "sans-serif"].join(),
-        fontWeightMedium: 400
+        fontWeightMedium: 400,
       }
     }
   )
