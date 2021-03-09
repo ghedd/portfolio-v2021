@@ -5,6 +5,17 @@ body {
   margin: 0 auto;
   width: 100%;
 }
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 #main-layout {
   display: grid;
   min-height: 100vh;
