@@ -7,9 +7,9 @@ import {
   Theme,
   useMediaQuery,
 } from "@material-ui/core"
-import useCustomTheme from "../../hooks/useCustomTheme"
-import TrianglePattern from "../decorations/triangle-pattern"
-import Circle from "../decorations/circle"
+import useCustomTheme from "../../../hooks/useCustomTheme"
+import TrianglePattern from "../../decorations/triangle-pattern"
+import Circle from "../../decorations/circle"
 import HeroCard from "./hero-card"
 
 const Hero: React.FC = () => {

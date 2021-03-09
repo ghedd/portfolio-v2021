@@ -10,7 +10,7 @@ import {
   Theme,
   Typography,
 } from "@material-ui/core"
-import useCustomTheme from "../../../hooks/useCustomTheme"
+import useCustomTheme from "../../../../hooks/useCustomTheme"
 
 const HeroCard: React.FC = () => {
   const { customTitleFont } = useCustomTheme()
