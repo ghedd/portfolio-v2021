@@ -5,4 +5,5 @@ Todo:
   ✔ add gatsby-plugin-react-svg @done(21-03-05 20:52)
   ✔ create responsive header with mini brand logo & burger menu icon @done(21-03-07 23:00)
   ✔ separate navbar from header @done(21-03-07 23:30)
-  ☐ get back to hero decoration later
+  ✔ get back to hero decoration later @done(21-03-09 22:21)
+☐ include commit message about changes in hero section

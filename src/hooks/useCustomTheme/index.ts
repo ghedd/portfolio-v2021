@@ -1,18 +1,20 @@
 import { createMuiTheme } from "@material-ui/core";
 
 const useCustomTheme = () => {
-  const customPallete = createMuiTheme(
+  const customBaseTheme = createMuiTheme(
     {
       palette: {
         primary: {
-          main: "#19d6ba"
+          main: "#19d6ba",
+          light: "#aed0cb"
         },
         secondary: {
           main: "#0b2832",
           light: "#233e47"
         },
         text: {
-          primary: "#fafafa"
+          primary: "#fafafa",
+          secondary: "#aed0cb",
         }
       },
       typography: {
@@ -34,11 +36,12 @@ const useCustomTheme = () => {
       typography: {
         fontFamily: ["Oswald", "sans-serif"].join(),
         fontWeightMedium: 400,
+        fontWeightBold: 600,
       }
     }
   )
 
-  return { customPallete, customTitleFont, navFont }
+  return { customBaseTheme, customTitleFont, navFont }
 }
 
 export default useCustomTheme

@@ -21,7 +21,7 @@ const TrianglePattern: React.FC<TrianglePatternProps> = ({
         // position: "absolute",
         // top: `${-top}%`,
         // left: `${left}%`,
-        marginRight: theme.spacing(1),
+        marginRight: theme.spacing(3),
         transform: `translateY(${top}%) translateY(${left}%)`,
       },
       triangle: {

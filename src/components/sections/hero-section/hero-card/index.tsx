@@ -19,8 +19,9 @@ const HeroCard: React.FC = () => {
       heroElement: {
         position: "relative",
         background: "purple",
-        minWidth: 275,
-        maxHeight: "40vh",
+        // minWidth: 275,
+        width: "clamp(275px, 90vw, 800px)",
+        minHeight: "20vh",
         zIndex: 1,
         borderRadius: 8,
         backgroundColor: "rgba(35, 62, 71, 0.2)",
@@ -56,7 +57,7 @@ const HeroCard: React.FC = () => {
           className={classes.heroTitle}
           gutterBottom={true}
         >
-          Bring your projects to the web
+          Call to actions goes here
         </Typography>
         <Typography variant="subtitle1" gutterBottom={true} align="center">
           Hi, I’m Eddie. <br />I help design and build modern websites.

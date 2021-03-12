@@ -6,10 +6,10 @@ import Footer from "../footer"
 import Header from "../header"
 
 const MainLayout: React.FC = ({ children }) => {
-  const { customPallete } = useCustomTheme()
-  const background = customPallete.palette.secondary.main
+  const { customBaseTheme } = useCustomTheme()
+  const background = customBaseTheme.palette.secondary.main
   return (
-    <ThemeProvider theme={customPallete}>
+    <ThemeProvider theme={customBaseTheme}>
       <div id="main-layout" style={{ background: background }}>
         <Header siteTitle="Home" />
         <main id="body">{children}</main>

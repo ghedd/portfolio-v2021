@@ -1,7 +1,7 @@
 import React from "react"
 import { navigate, Link } from "gatsby"
 import clsx from "clsx"
-import { makeStyles } from "@material-ui/core/styles"
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import useCustomTheme from "../../hooks/useCustomTheme"
 import {
   Drawer,
@@ -18,7 +18,6 @@ import {
 import { BrandMobile, MenuIcon } from "../../assets"
 import { NavLink, SocialMedia } from "../layouts/header"
 
-
 interface MenuDrawerProps {
   navLinks: NavLink[]
   socialMediaLinks: SocialMedia[]
@@ -31,35 +30,43 @@ const MenuDrawer: React.FC<MenuDrawerProps> = ({
   socialMediaLinks,
   navClasses,
 }) => {
-  const { customPallete, navFont } = useCustomTheme()
+  const { customBaseTheme, navFont } = useCustomTheme()
 
-  const useStyles = makeStyles({
-    menuIcon: {
-      color: customPallete.palette.primary.main,
-      "&:hover": {
-        backgroundColor: "transparent",
+  const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+      navContainer: {
+        padding: 0,
       },
-    },
-    paper: {
-      background: customPallete.palette.secondary.light,
-    },
-    list: {
-      width: 250,
-    },
-    button: {
-      "&:hover, &:focus": {
-        background: customPallete.palette.secondary.main,
+      brandMobile: {
+        padding: theme.spacing(1.5),
       },
-    },
-    socialMediaLinks: {
-      "& > a": {
-        textTransform: "capitalize",
-        fontFamily: navFont.typography.fontFamily,
-        textDecoration: "none",
-        color: customPallete.palette.text.primary,
+      menuIcon: {
+        color: customBaseTheme.palette.primary.main,
+        "&:hover": {
+          backgroundColor: "transparent",
+        },
       },
-    },
-  })
+      paper: {
+        background: customBaseTheme.palette.secondary.light,
+      },
+      list: {
+        width: 250,
+      },
+      button: {
+        "&:hover, &:focus": {
+          background: customBaseTheme.palette.secondary.main,
+        },
+      },
+      socialMediaLinks: {
+        "& > a": {
+          textTransform: "capitalize",
+          fontFamily: navFont.typography.fontFamily,
+          textDecoration: "none",
+          color: customBaseTheme.palette.text.primary,
+        },
+      },
+    })
+  )
   const classes = useStyles()
   const [state, setState] = React.useState({
     right: false,
@@ -122,9 +129,9 @@ const MenuDrawer: React.FC<MenuDrawerProps> = ({
   const anchor = "right"
   return (
     <Toolbar>
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" className={classes.navContainer}>
         <Grid container alignItems="center" justify="space-between">
-          <Grid item>
+          <Grid item className={classes.brandMobile}>
             <Link to="/">
               <BrandMobile />
             </Link>

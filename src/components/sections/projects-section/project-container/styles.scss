@@ -1,0 +1,22 @@
+#masonryContainer {
+  display: block;
+  & > * {
+    break-inside: avoid;
+  }
+}
+// .featured {}
+@supports (grid-template-rows: masonry) {
+  #masonryContainer {
+    // grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: masonry;
+    display: inherit;
+
+    @media only screen and(min-width: 600px) {
+      grid-auto-flow: dense;
+      display: grid;
+      & > * {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

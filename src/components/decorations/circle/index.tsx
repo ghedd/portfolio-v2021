@@ -5,10 +5,11 @@ import useCustomTheme from "../../../hooks/useCustomTheme"
 interface CircleProps {
   className?: string
   size?: number
+  color?: string
 }
 
-const Circle: React.FC<CircleProps> = ({ className, size = 1000 }) => {
-  const { customPallete } = useCustomTheme()
+const Circle: React.FC<CircleProps> = ({ className, size = 500, color }) => {
+  const { customBaseTheme } = useCustomTheme()
   const useStyles = makeStyles(() =>
     createStyles({
       circleContainer: {
@@ -19,12 +20,12 @@ const Circle: React.FC<CircleProps> = ({ className, size = 1000 }) => {
 
       circle: {
         display: "block",
-        width: size,
-        height: size,
-        maxHeight: 1200,
-        maxWidth: 1200,
-        backgroundColor: customPallete.palette.secondary.light,
-        clipPath: `circle(calc(${size / 60}% + 5vw) at 50% 50%)`,
+        width: `clamp(${size * 0.4}px, 40vw, ${size * 1.5}px)`,
+        height: `clamp(${size * 0.4}px, 40vw, ${size * 1.5}px)`,
+        // maxHeight: 1200,
+        // maxWidth: 1200,
+        backgroundColor: color || customBaseTheme.palette.secondary.light,
+        clipPath: `circle(50% at 50% 50%)`,
       },
     })
   )
