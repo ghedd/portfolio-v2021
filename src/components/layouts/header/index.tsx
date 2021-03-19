@@ -15,7 +15,6 @@ import useCustomTheme from "../../../hooks/useCustomTheme"
 import MenuDrawer from "../../menu-drawer"
 import NavBar from "../../navbar"
 
-
 interface HeaderProps {
   siteTitle?: string
   className?: string
@@ -62,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, className }) => {
       },
       socialMedia: {
         "& > *": {
-          marginRight: theme.spacing(1),
+          marginRight: theme.spacing(0.5),
         },
         "& :last-child": {
           marginRight: 0,
@@ -105,7 +104,10 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, className }) => {
       link: "https://twitter.com/EddieLewis_92",
     },
   ]
-
+  const navClasses = {
+    navLinks: classes.navLinks,
+    socialMedia: classes.socialMedia,
+  }
   return (
     <header className={className} id="header">
       <AppBar
@@ -117,13 +119,13 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, className }) => {
           <NavBar
             navLinks={navLinks}
             socialMediaLinks={socialMedia}
-            navClasses={classes.navLinks}
+            navClasses={navClasses}
           />
         ) : (
           <MenuDrawer
             navLinks={navLinks}
             socialMediaLinks={socialMedia}
-            navClasses={classes.navLinks}
+            navClasses={navClasses}
           />
         )}
       </AppBar>

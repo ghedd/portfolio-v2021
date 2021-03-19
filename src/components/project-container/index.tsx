@@ -5,7 +5,7 @@ import {
   Theme,
   useMediaQuery,
 } from "@material-ui/core"
-import ProjectItem from "../project-item"
+import ProjectItem from "../sections/projects-section/project-item"
 import "./styles.scss"
 
 const ProjectContainer = () => {

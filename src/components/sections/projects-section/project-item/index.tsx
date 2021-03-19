@@ -60,12 +60,12 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
             {description}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small" color="primary">
-            Learn more
-          </Button>
-        </CardActions>
       </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary">
+          Learn more
+        </Button>
+      </CardActions>
     </Card>
   )
 }

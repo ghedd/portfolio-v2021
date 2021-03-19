@@ -18,10 +18,13 @@ import {
 import { BrandMobile, MenuIcon } from "../../assets"
 import { NavLink, SocialMedia } from "../layouts/header"
 
+type NavClasses = {
+  [key: string]: string
+}
 interface MenuDrawerProps {
   navLinks: NavLink[]
   socialMediaLinks: SocialMedia[]
-  navClasses: string
+  navClasses: NavClasses
 }
 type Anchor = "right"
 
@@ -39,6 +42,11 @@ const MenuDrawer: React.FC<MenuDrawerProps> = ({
       },
       brandMobile: {
         padding: theme.spacing(1.5),
+      },
+      navLinks: {
+        "& > *": {
+          marginRight: 0,
+        },
       },
       menuIcon: {
         color: customBaseTheme.palette.primary.main,
@@ -94,7 +102,7 @@ const MenuDrawer: React.FC<MenuDrawerProps> = ({
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List className={navClasses}>
+      <List className={navClasses.navLinks}>
         {navLinks.map(item => (
           <ListItem
             button
@@ -128,7 +136,7 @@ const MenuDrawer: React.FC<MenuDrawerProps> = ({
   )
   const anchor = "right"
   return (
-    <Toolbar>
+    <Toolbar disableGutters>
       <Container maxWidth="sm" className={classes.navContainer}>
         <Grid container alignItems="center" justify="space-between">
           <Grid item className={classes.brandMobile}>

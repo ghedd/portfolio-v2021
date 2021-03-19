@@ -10,7 +10,8 @@ const useCustomTheme = () => {
         },
         secondary: {
           main: "#0b2832",
-          light: "#233e47"
+          light: "#233e47",
+          dark: "#0e0e0e"
         },
         text: {
           primary: "#fafafa",
