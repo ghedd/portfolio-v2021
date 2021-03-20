@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@material-ui/core"
 import React from "react"
-import CardImage from "../../../decorations/card-image"
+import CardImage from "../../decorations/card-image"
 interface ProjectItemProps {
   featured?: boolean
   imageUrl?: string
@@ -19,7 +19,21 @@ interface ProjectItemProps {
   description?: string
   link?: string
 }
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    item: {
+      backgroundColor: theme.palette.secondary.light,
+      "&:hover img": {
+        filter: "none",
+      },
+    },
 
+    featured: {
+      columnSpan: "all",
+      gridColumn: "span 2",
+    },
+  })
+)
 const ProjectItem: React.FC<ProjectItemProps> = ({
   featured = false,
   imageUrl = "https://picsum.photos/200/300.webp",
@@ -27,22 +41,6 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
   description = "Description",
   link = "/#",
 }) => {
-  const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      item: {
-        backgroundColor: theme.palette.secondary.light,
-        "&:hover img": {
-          filter: "none",
-        },
-      },
-
-      featured: {
-        columnSpan: "all",
-        gridColumn: "span 2",
-      },
-    })
-  )
-
   const classes = useStyles()
   return (
     <Card
@@ -56,7 +54,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
           <Typography variant="h5" component="h2" gutterBottom>
             <Box fontWeight="fontWeightBold">{title}</Box>
           </Typography>
-          <Typography variant="body2" component="p" color="textSecondary">
+          <Typography variant="body2" component="p">
             {description}
           </Typography>
         </CardContent>

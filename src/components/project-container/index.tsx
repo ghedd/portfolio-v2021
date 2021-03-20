@@ -3,37 +3,37 @@ import {
   createStyles,
   makeStyles,
   Theme,
-  useMediaQuery,
+  // useMediaQuery,
 } from "@material-ui/core"
-import ProjectItem from "../sections/projects-section/project-item"
+import ProjectItem from "./project-item"
 import "./styles.scss"
-
-const ProjectContainer = () => {
-  const matches = useMediaQuery("(min-width: 600px)")
-  const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      projectContainer: {
-        marginTop: "5rem",
-        marginBottom: "5rem",
-        position: "relative",
-        width: "100%",
-        // gridTemplateColumns: `repeat(${ matches ? 3 : 1 }, 1fr)`,
-        gridTemplateColumns: "1fr",
-        [theme.breakpoints.up("sm")]: {
-          gridTemplateColumns: "repeat(3, 1fr)",
-          columns: 3,
-          gap: `${theme.spacing(2.5)}px`,
-        },
-        gap: `${theme.spacing(2.5)}px 0`,
-        // gap: `${theme.spacing(2.5)}px ${matches ? theme.spacing(2.5) : 0}px`,
-        // columnGap: `${matches ? theme.spacing(1.5) : 0}`,
-        // columns: `${matches ? 3 : 1}`,
-        "& > *": {
-          marginBottom: theme.spacing(2.5),
-        },
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    projectContainer: {
+      marginTop: "5rem",
+      marginBottom: "5rem",
+      position: "relative",
+      width: "100%",
+      // gridTemplateColumns: `repeat(${ matches ? 3 : 1 }, 1fr)`,
+      gridTemplateColumns: "1fr",
+      [theme.breakpoints.up("sm")]: {
+        gridTemplateColumns: "repeat(3, 1fr)",
+        columns: 3,
+        gap: `${theme.spacing(2.5)}px`,
       },
-    })
-  )
+      gap: `${theme.spacing(2.5)}px 0`,
+      // gap: `${theme.spacing(2.5)}px ${matches ? theme.spacing(2.5) : 0}px`,
+      // columnGap: `${matches ? theme.spacing(1.5) : 0}`,
+      // columns: `${matches ? 3 : 1}`,
+      "& > *": {
+        marginBottom: theme.spacing(2.5),
+      },
+    },
+  })
+)
+const ProjectContainer = () => {
+  // const matches = useMediaQuery("(min-width: 600px)")
+
   const classes = useStyles()
   const featuredContent = {
     title:
