@@ -5,13 +5,15 @@ import MainLayout from "../components/layouts/main-layout"
 import HeroSection from "../components/sections/hero-section"
 import ServicesSection from "../components/sections/services-section"
 import ProjectsSection from "../components/sections/projects-section"
+import BlogSection from "../components/sections/blog-section"
 
 const IndexPage = () => (
   <MainLayout>
     <SEO title="Home" />
     <HeroSection />
     <ProjectsSection />
-    <ServicesSection/>
+    <ServicesSection />
+    <BlogSection />
   </MainLayout>
 )
 

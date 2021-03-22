@@ -72,7 +72,7 @@ const ServicesSection: React.FC = () => {
   ]
   const classes = useStyles()
   return (
-    <section>
+    <section style={{ position: "relative", zIndex: 1 }}>
       <Container maxWidth="lg">
         <SectionHeading heading="services" />
         <Grid

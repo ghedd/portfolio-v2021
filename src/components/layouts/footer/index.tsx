@@ -12,6 +12,7 @@ import { Github, LinkedIn, Twitter } from "../../../assets"
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     footer: {
+      position:"relative",
       background: theme.palette.secondary.dark,
       display: "flex",
       alignItems: "center",
