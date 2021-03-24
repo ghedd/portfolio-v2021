@@ -9,7 +9,7 @@ import {
   // Theme,
 } from "@material-ui/core"
 import { Brand } from "../../assets"
-import useCustomTheme from "../../hooks/useCustomTheme"
+// import useCustomTheme from "../../hooks/useCustomTheme"
 import { NavLink, SocialMedia } from "../layouts/header"
 
 interface NavBarProps {
@@ -23,37 +23,25 @@ const NavBar: React.FC<NavBarProps> = ({
   socialMediaLinks,
   navClasses,
 }) => {
-  /*   const { navFont } = useCustomTheme()
-  const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      navLinks: {
-        "& > *": {
-          fontFamily: navFont.typography.fontFamily,
-          fontWeight: navFont.typography.fontWeightMedium,
-          textDecoration: "none",
-          color: theme.palette.text.primary,
-          textTransform: "uppercase",
-          marginRight: theme.spacing(2),
-        },
-        "& :last-child": {
-          marginRight: 0,
-        },
-      },
-    })
-  )
-  const classes = useStyles()
- */ return (
-    <Toolbar disableGutters>
+  return (
+    <Toolbar variant="dense" disableGutters>
       <Container maxWidth="lg">
         <Grid container alignItems="center" justify="space-between">
           <Grid item>
             <Link to="/">
-              <Brand />
+              <Brand
+                className={navClasses.brand}
+              />
             </Link>
           </Grid>
           <Grid item className={navClasses.navLinks}>
             {navLinks.map(item => (
-              <Link key={item.nav} to={item.link} className="navLink">
+              <Link
+                key={item.nav}
+                to={item.link}
+                className="navLink"
+                activeClassName={navClasses.navLinkActive}
+              >
                 {item.nav}
               </Link>
             ))}

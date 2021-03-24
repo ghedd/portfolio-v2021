@@ -5,25 +5,45 @@ type ItemProps = {
 }
 interface TrianglePatternProps {
   itemArray?: ItemProps[]
+  positionAbsolute?: boolean
   top?: number
   left?: number
+  bottom?: number
+  right?: number
   size?: number
+  transformTranslateX?: number
+  transformTranslateY?: number
+  colorFullHouse?: string
 }
 const TrianglePattern: React.FC<TrianglePatternProps> = ({
   itemArray,
-  top = 0,
-  left = 0,
+  positionAbsolute,
+  top,
+  left,
+  bottom,
+  right,
+  transformTranslateX = 0,
+  transformTranslateY = 0,
   size = 100,
+  colorFullHouse = "red",
 }) => {
   const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       triangles: {
-        // position: "absolute",
-        // top: `${-top}%`,
-        // left: `${left}%`,
         marginRight: theme.spacing(3),
-        transform: `translateY(${top}%) translateY(${left}%)`,
       },
+      trianglesPosition: positionAbsolute
+        ? {
+            position: "absolute",
+            top: `${top !== undefined ? top + "%" : "unset"}`,
+            left: `${left !== undefined ? left + "%" : "unset"}`,
+            bottom: `${bottom !== undefined ? bottom + "%" : "unset"}`,
+            right: `${right !== undefined ? right + "%" : "unset"}`,
+            transform: `translateY(${transformTranslateY}%) translateX(${transformTranslateX}%)`,
+          }
+        : {
+            position: "relative",
+          },
       triangle: {
         display: "block",
         height: `clamp(${(size * 70) / 100}px, 5vw, ${size}px)`,
@@ -36,20 +56,23 @@ const TrianglePattern: React.FC<TrianglePatternProps> = ({
 
   const classes = useStyles()
   return (
-    <div className={classes.triangles} tabIndex={-1}>
+    <div
+      className={`${classes.triangles} ${classes.trianglesPosition}`}
+      tabIndex={-1}
+    >
       {itemArray
         ? itemArray.map((item, idx) => (
             <span
               key={idx}
               className={classes.triangle}
-              style={{ backgroundColor: item.bgrColor }}
+              style={{ backgroundColor: item.bgrColor || colorFullHouse }}
             />
           ))
-        : [1, 2, 3].map((item, idx) => (
+        : [1, 2, 3].map(idx => (
             <span
               key={idx}
               className={classes.triangle}
-              style={{ backgroundColor: "red" }}
+              style={{ backgroundColor: colorFullHouse }}
             />
           ))}
     </div>

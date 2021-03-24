@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `teddlecodes`,
+    description: `Hi! I'm Thinh (you can call me Eddie), a self-taught web developer, front-end focused. I use Figma to design websites and build them with React. Currently I'm really into Gatsby and Strapi (JAM stack).`,
+    author: `@ThinhLe`,
   },
   plugins: [
     `gatsby-plugin-sass`,

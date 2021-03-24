@@ -2,21 +2,23 @@
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  scroll-behavior: smooth;
+  // scroll-behavior: smooth;
+  // transition: all 400ms ease-in;
 }
 .navLink {
   position: relative;
   &::before {
     content: "";
     position: absolute;
-    top: -15%;
+    top: -80%;
     left: 50%;
     transform: translateY(50%) translateX(-50%);
     width: 0;
-    height: 0.12rem;
+    height: clamp(0.2rem, 5vw, 0.4rem);
     background: #fafafa;
     transition: all 200ms ease-in-out;
     transform-origin: bottom;
+    border-radius: 8px;
   }
   &:hover::before {
     width: 100%;

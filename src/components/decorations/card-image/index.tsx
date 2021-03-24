@@ -16,7 +16,7 @@ const CardImage: React.FC<CardImageProps> = ({
       objectPosition: "center",
       width: "100%",
       height: "100%",
-      filter: "hue-rotate(90deg) grayscale(0.8)",
+      filter: "saturate(0)",
       transition: "filter 200ms ease-in-out",
     },
   })

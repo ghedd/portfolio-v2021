@@ -11,14 +11,9 @@ import {
   Typography,
 } from "@material-ui/core"
 import React from "react"
+import { ProjectItemProps } from ".."
 import CardImage from "../../decorations/card-image"
-interface ProjectItemProps {
-  featured?: boolean
-  imageUrl?: string
-  title?: string
-  description?: string
-  link?: string
-}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     item: {
@@ -27,35 +22,38 @@ const useStyles = makeStyles((theme: Theme) =>
         filter: "none",
       },
     },
-
-    featured: {
+    favorite: {
       columnSpan: "all",
       gridColumn: "span 2",
     },
   })
 )
 const ProjectItem: React.FC<ProjectItemProps> = ({
+  isOnProjectsPage = false,
   featured = false,
-  imageUrl = "https://picsum.photos/200/300.webp",
-  title = "Title",
-  description = "Description",
-  link = "/#",
+  favorite = false,
+  coverPhotoURL = "https://picsum.photos/200/300.webp",
+  projectTitle = "Title",
+  projectDesc = "Description",
+  slug = "/#",
 }) => {
   const classes = useStyles()
   return (
     <Card
       className={
-        featured ? ` ${classes.featured} ${classes.item}` : classes.item
+        favorite && !isOnProjectsPage
+          ? ` ${classes.favorite} ${classes.item}`
+          : classes.item
       }
     >
       <CardActionArea>
-        <CardImage imageUrl={imageUrl} />
+        <CardImage imageUrl={coverPhotoURL} />
         <CardContent>
           <Typography variant="h5" component="h2" gutterBottom>
-            <Box fontWeight="fontWeightBold">{title}</Box>
+            <Box fontWeight="fontWeightBold">{projectTitle}</Box>
           </Typography>
           <Typography variant="body2" component="p">
-            {description}
+            {projectDesc}
           </Typography>
         </CardContent>
       </CardActionArea>

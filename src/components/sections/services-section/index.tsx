@@ -17,9 +17,11 @@ import SectionHeading from "../section-heading"
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     servicesContainer: {
-      marginTop: "5rem",
-      marginBottom: "5rem",
+      marginTop: "2em",
+      marginBottom: "3em",
       [theme.breakpoints.up("sm")]: {
+        marginTop: "3.5em",
+        marginBottom: "5em",
         flexDirection: "row",
         justifyContent: "center",
       },
@@ -28,6 +30,10 @@ const useStyles = makeStyles((theme: Theme) =>
       minWidth: 300,
     },
     serviceCard: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: 250,
       background: theme.palette.secondary.light,
       transition: "all 250ms ease-in-out",
       "&:hover": {
@@ -51,6 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     serviceContentDesc: {
       // color: theme.palette.text.secondary,
+      maxWidth: "60ch",
     },
   })
 )
@@ -78,10 +85,10 @@ const ServicesSection: React.FC = () => {
         <Grid
           container
           direction="column"
-          justify="space-between"
+          justify="center"
           alignItems="center"
           spacing={2}
-          className={classes.servicesContainer}
+          className={`container ${classes.servicesContainer}`}
         >
           {services.map(service => (
             <Grid
@@ -95,14 +102,16 @@ const ServicesSection: React.FC = () => {
               <Card className={classes.serviceCard}>
                 <CardContent className={classes.serviceCardContent}>
                   <service.serviceIcon className={classes.serviceIcon} />
-                  <Typography
-                    variant="h5"
-                    component="h2"
-                    gutterBottom
-                    align="center"
-                  >
-                    <Box fontWeight="fontWeightBold">{service.serviceName}</Box>
-                  </Typography>
+                  <Box fontWeight="fontWeightBold">
+                    <Typography
+                      variant="h5"
+                      component="h2"
+                      gutterBottom
+                      align="center"
+                    >
+                      {service.serviceName}
+                    </Typography>
+                  </Box>
                   <Typography
                     className={classes.serviceContentDesc}
                     variant="body2"

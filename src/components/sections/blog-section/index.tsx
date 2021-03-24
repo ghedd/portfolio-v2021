@@ -18,8 +18,6 @@ const useStyles = makeStyles((theme: Theme) =>
       position: "relative",
     },
     blogSectionContainer: {
-      marginTop: "5rem",
-      marginBottom: "5rem",
       position: "relative",
     },
     blogComingSoon: {
@@ -42,7 +40,7 @@ const BlogSection: React.FC = () => {
     <section className={classes.blogSection}>
       <Container maxWidth="lg">
         <SectionHeading heading="blog" />
-        <Grid container className={classes.blogSectionContainer}>
+        <Grid container className={`container ${classes.blogSectionContainer}`}>
           <BlogSectionDeco />
           <Grid item xs={12} sm={6} className={classes.blogComingSoon}>
             <Typography variant="h5" component="h2" gutterBottom>

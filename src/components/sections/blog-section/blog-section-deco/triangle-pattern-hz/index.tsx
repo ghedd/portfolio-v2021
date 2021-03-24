@@ -59,6 +59,7 @@ const TrianglePatternHorizontal: React.FC<TrianglePatternHzProps> = ({
             //   }}
             // />
             <svg
+              key={idx}
               width="66"
               height="63"
               viewBox="0 0 66 63"
@@ -70,13 +71,12 @@ const TrianglePatternHorizontal: React.FC<TrianglePatternHzProps> = ({
               }}
             >
               <path
-                key={idx}
                 d="M32.9725 63L65.8577 0.273205H0.0873566L32.9725 63Z"
                 fill={`${item.bgrColor}`}
               />
             </svg>
           ))
-        : [1, 2, 3].map((item, idx) => (
+        : [1, 2, 3].map(idx => (
             <span
               key={idx}
               className={`${classes.triangle} triangleSpin`}

@@ -37,14 +37,25 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, className }) => {
     createStyles({
       root: {
         backgroundColor: theme.palette.secondary.main,
-        transition: "box-shadow 300ms ease-out",
+        transition: "box-shadow 200ms ease-out",
         paddingTop: theme.spacing(1),
         paddingBottom: theme.spacing(1),
+        minHeight: 45,
       },
       appBar: {
         position: "absolute",
         top: 50,
         boxShadow: "none",
+        // transition: "all 200ms ease-out",
+        scrollBehavior: "smooth",
+      },
+      brandBase: {
+        maxHeight: 60,
+        transition: "all 200ms ease-in",
+      },
+      brandSticky: {
+        width: "auto",
+        maxHeight: 50,
       },
       navLinks: {
         "& > *": {
@@ -55,8 +66,16 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, className }) => {
           textTransform: "uppercase",
           marginRight: theme.spacing(2),
         },
+
         "& :last-child": {
           marginRight: 0,
+        },
+      },
+      navLink: {},
+      navLinksActive: {
+        color: theme.palette.primary.main,
+        "&::before": {
+          width: "100%",
         },
       },
       socialMedia: {
@@ -74,12 +93,16 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, className }) => {
   const { top } = useScroll()
   const navLinks = [
     {
-      nav: "about",
-      link: "/about",
+      nav: "home",
+      link: "/",
     },
     {
       nav: "projects",
       link: "/projects",
+    },
+    {
+      nav: "about",
+      link: "/about",
     },
     {
       nav: "contact",
@@ -107,12 +130,17 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, className }) => {
   const navClasses = {
     navLinks: classes.navLinks,
     socialMedia: classes.socialMedia,
+    navLinkActive: classes.navLinksActive,
+    brand:
+      top >= 50
+        ? classes.brandSticky + " " + classes.brandBase
+        : classes.brandBase,
   }
   return (
     <header className={className} id="header">
       <AppBar
         className={`${classes.root} ${
-          top >= 50 ? classes.appBar + "stickyNav" : classes.appBar
+          top >= 80 ? classes.appBar + "stickyNav" : classes.appBar
         }`}
       >
         {matches ? (
