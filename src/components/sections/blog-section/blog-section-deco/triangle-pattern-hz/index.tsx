@@ -49,15 +49,6 @@ const TrianglePatternHorizontal: React.FC<TrianglePatternHzProps> = ({
     <div className={classes.triangles}>
       {itemArray
         ? itemArray.map((item, idx) => (
-            // <span
-            //   key={idx}
-            //   className={`${classes.triangle} triangleSpin`}
-            //   style={{
-            //     backgroundColor: item.bgrColor,
-            //     animationDuration: `calc(${idx} * 90ms + 2400ms)`,
-            //     animationDelay: `${idx} * 100ms`,
-            //   }}
-            // />
             <svg
               key={idx}
               width="66"

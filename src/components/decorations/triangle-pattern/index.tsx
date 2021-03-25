@@ -43,6 +43,7 @@ const TrianglePattern: React.FC<TrianglePatternProps> = ({
           }
         : {
             position: "relative",
+            transform: `translateY(${transformTranslateY}%) translateX(${transformTranslateX}%)`,
           },
       triangle: {
         display: "block",
@@ -56,10 +57,7 @@ const TrianglePattern: React.FC<TrianglePatternProps> = ({
 
   const classes = useStyles()
   return (
-    <div
-      className={`${classes.triangles} ${classes.trianglesPosition}`}
-      tabIndex={-1}
-    >
+    <div className={`${classes.triangles} ${classes.trianglesPosition}`}>
       {itemArray
         ? itemArray.map((item, idx) => (
             <span
