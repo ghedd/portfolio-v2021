@@ -14,14 +14,14 @@ To-commits:
   ✔ update trianlge pattern component @done(21-03-23 21:31)
   ✔ navbar fix: condense navbar @done(21-03-23 21:31)
   ✔ gatsby-config.js: update metadata @done(21-03-23 21:31)
-  ☐ complete basic layout of about page
-  ☐ add gatsby-plugin-image
-  ☐ temporarily create & use image.tsx component to render avatar + add profile picture to /images
-  ☐ adjust header scroll effect to smaller y-offset value
-  ☐ adjest MainLayout to allow using className
-  ☐ disable triangle deco on small screen in homepage/blog section & clean up code in the same component
-  ☐ update props passed to Triangle pattern in hero section
-  ☐ fix service card height (responsive height)
+  ✔ complete basic layout of about page @done(21-03-25 11:39)
+  ✔ add gatsby-plugin-image @done(21-03-25 11:39)
+  ✔ temporarily create & use image.tsx component to render avatar + add profile picture to /images @done(21-03-25 11:39)
+  ✔ adjust header scroll effect to smaller y-offset value @done(21-03-25 11:39)
+  ✔ adjest MainLayout to allow using className @done(21-03-25 11:39)
+  ✔ disable triangle deco on small screen in homepage/blog section & clean up code in the same component @done(21-03-25 11:39)
+  ✔ update props passed to Triangle pattern in hero section @done(21-03-25 11:39)
+  ✔ fix service card height (responsive height) @done(21-03-25 11:39)
 Later:
   ☐ hero: reduce blur px
   ☐ hero: lower first triangle group to around 10% from top
