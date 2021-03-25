@@ -11,11 +11,17 @@ import useCustomTheme from "../../../../hooks/useCustomTheme"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    triangles: {
+      display: "block",
+      [theme.breakpoints.down("xs")]: {
+        display: "none",
+      },
+    },
     blogSectionDeco: {
       position: "absolute",
       top: 0,
       right: 0,
-      transform: "translateY(-50%)",
+      transform: "translateY(-20%)",
       zIndex: 0,
     },
   })
@@ -28,7 +34,6 @@ const BlogSectionDeco = () => {
   } = useCustomTheme()
 
   const md = useMediaQuery("(min-width: 960px)")
-  const sm = useMediaQuery("(min-width: 600px)")
 
   const decoTriangles = [
     {
@@ -43,11 +48,13 @@ const BlogSectionDeco = () => {
   ]
   return (
     <React.Fragment>
-      <TrianglePatternHorizontal
-        itemArray={decoTriangles}
-        top={md ? 0 : -80}
-        right={md ? 15 : 30}
-      />
+      <div className={classes.triangles}>
+        <TrianglePatternHorizontal
+          itemArray={decoTriangles}
+          top={md ? 0 : -80}
+          right={md ? 15 : 30}
+        />
+      </div>
       <Circle size={200} color="#aed0cb" className={classes.blogSectionDeco} />
     </React.Fragment>
   )

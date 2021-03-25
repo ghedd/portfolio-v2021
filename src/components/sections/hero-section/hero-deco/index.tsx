@@ -64,12 +64,20 @@ const HeroDeco: React.FC = () => {
     <div className={classes.decorations}>
       {/* <Circle className={classes.decoCircle} size={1300} /> */}
       <div className={`${classes.decoTriangles} ${classes.decoTriangles1}`}>
-        <TrianglePattern top={10} itemArray={trianglePatt1} size={65} />
-        <TrianglePattern top={15} itemArray={trianglePatt2} size={65} />
+        <TrianglePattern itemArray={trianglePatt1} size={65} />
+        <TrianglePattern
+          transformTranslateY={10}
+          itemArray={trianglePatt2}
+          size={65}
+        />
       </div>
       <div className={`${classes.decoTriangles} ${classes.decoTriangles2}`}>
-        <TrianglePattern top={10} itemArray={trianglePatt3} size={65} />
-        <TrianglePattern top={15} itemArray={trianglePatt4} size={65} />
+        <TrianglePattern
+          transformTranslateY={15}
+          itemArray={trianglePatt3}
+          size={65}
+        />
+        <TrianglePattern itemArray={trianglePatt4} size={65} />
       </div>
     </div>
   )

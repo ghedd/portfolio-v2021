@@ -5,12 +5,20 @@ import useCustomTheme from "../../../hooks/useCustomTheme"
 import Footer from "../footer"
 import Header from "../header"
 
-const MainLayout: React.FC = ({ children }) => {
+interface MainLayoutProps {
+  className?: string
+}
+
+const MainLayout: React.FC<MainLayoutProps> = ({ children, className }) => {
   const { customBaseTheme } = useCustomTheme()
   const background = customBaseTheme.palette.secondary.main
   return (
     <ThemeProvider theme={customBaseTheme}>
-      <div id="main-layout" style={{ background: background }}>
+      <div
+        id="main-layout"
+        style={{ background: background }}
+        className={className}
+      >
         <Header siteTitle="Home" />
         <main id="body">{children}</main>
         <Footer />

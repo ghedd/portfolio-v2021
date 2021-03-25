@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      minHeight: 250,
+      minHeight: "clamp(150px, 10vw, 220px)",
       background: theme.palette.secondary.light,
       transition: "all 250ms ease-in-out",
       "&:hover": {

@@ -140,7 +140,7 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, className }) => {
     <header className={className} id="header">
       <AppBar
         className={`${classes.root} ${
-          top >= 80 ? classes.appBar + "stickyNav" : classes.appBar
+          top >= 50 ? classes.appBar + "stickyNav" : classes.appBar
         }`}
       >
         {matches ? (
