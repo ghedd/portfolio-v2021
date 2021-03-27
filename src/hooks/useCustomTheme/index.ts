@@ -16,6 +16,10 @@ const useCustomTheme = () => {
         text: {
           primary: "#fafafa",
           secondary: "#aed0cb",
+          disabled: "#2d6c63"
+        },
+        error: {
+          main: "#f07373"
         }
       },
       typography: {

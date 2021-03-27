@@ -106,7 +106,7 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, className }) => {
     },
     {
       nav: "contact",
-      link: "/#contact",
+      link: "/contact",
     },
   ]
 
