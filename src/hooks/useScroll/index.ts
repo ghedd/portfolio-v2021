@@ -2,8 +2,8 @@ import { useState, useEffect } from "react"
 import useSSRCheck from "../useSSRCheck"
 const useScroll = () => {
   const { isSSR } = useSSRCheck()
-  const [left, setLeft] = useState<number>( 0 )
-  const [top, setTop] = useState<number>( 0 );
+  const [offsetLeft, setLeft] = useState<number>( 0 )
+  const [offsetTop, setTop] = useState<number>( 0 );
 
   useEffect( () => {
     const handleScroll = () => {
@@ -11,13 +11,12 @@ const useScroll = () => {
       setTop( window.pageYOffset )
     }
     if ( !isSSR ) {
-      window.addEventListener( "scroll", handleScroll )
+      window.addEventListener( "scroll", handleScroll, { passive: true } )
     }
-    return () => {
-      window.removeEventListener( "scroll", handleScroll )
-    }
+    return () => window.removeEventListener( "scroll", handleScroll )
+
   }, [isSSR] )
-  return { left, top }
+  return { offsetLeft, offsetTop }
 }
 
 export default useScroll

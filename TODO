@@ -33,3 +33,4 @@ Later:
   ☐ blog section: move deco triangles upwards so not to be overlapped by content (firefox backdrop-filter issue)
   ☐ figure out how to replace useScroll hook to prevent constant rendering while scrolling
   ☐ clean up about-page component
+  ☐ refactor useCustomTheme

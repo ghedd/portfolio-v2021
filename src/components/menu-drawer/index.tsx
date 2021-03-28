@@ -2,7 +2,6 @@ import React from "react"
 import { navigate, Link } from "gatsby"
 import clsx from "clsx"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
-import useCustomTheme from "../../hooks/useCustomTheme"
 import {
   Drawer,
   // Button,
@@ -28,53 +27,52 @@ interface MenuDrawerProps {
 }
 type Anchor = "right"
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    navContainer: {
+      padding: 0,
+    },
+    brandMobile: {
+      padding: theme.spacing(1.5),
+    },
+    navLinks: {
+      "& > *": {
+        marginRight: 0,
+      },
+    },
+    menuIcon: {
+      color: theme.palette.primary.main,
+      "&:hover": {
+        backgroundColor: "transparent",
+      },
+    },
+    paper: {
+      background: theme.palette.secondary.light,
+    },
+    list: {
+      width: 250,
+    },
+    button: {
+      "&:hover, &:focus": {
+        background: theme.palette.secondary.main,
+      },
+    },
+    socialMediaLinks: {
+      "& > a": {
+        textTransform: "capitalize",
+        fontFamily: "Oswald",
+        textDecoration: "none",
+        color: theme.palette.text.primary,
+      },
+    },
+  })
+)
+
 const MenuDrawer: React.FC<MenuDrawerProps> = ({
   navLinks,
   socialMediaLinks,
   navClasses,
 }) => {
-  const { customBaseTheme, navFont } = useCustomTheme()
-
-  const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      navContainer: {
-        padding: 0,
-      },
-      brandMobile: {
-        padding: theme.spacing(1.5),
-      },
-      navLinks: {
-        "& > *": {
-          marginRight: 0,
-        },
-      },
-      menuIcon: {
-        color: customBaseTheme.palette.primary.main,
-        "&:hover": {
-          backgroundColor: "transparent",
-        },
-      },
-      paper: {
-        background: customBaseTheme.palette.secondary.light,
-      },
-      list: {
-        width: 250,
-      },
-      button: {
-        "&:hover, &:focus": {
-          background: customBaseTheme.palette.secondary.main,
-        },
-      },
-      socialMediaLinks: {
-        "& > a": {
-          textTransform: "capitalize",
-          fontFamily: navFont.typography.fontFamily,
-          textDecoration: "none",
-          color: customBaseTheme.palette.text.primary,
-        },
-      },
-    })
-  )
   const classes = useStyles()
   const [state, setState] = React.useState({
     right: false,

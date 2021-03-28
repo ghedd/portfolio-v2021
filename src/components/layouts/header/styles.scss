@@ -1,9 +1,9 @@
 .stickyNav {
-  position: sticky;
-  position: -webkit-sticky;
   top: 0;
+  position: fixed;
   // scroll-behavior: smooth;
-  // transition: all 400ms ease-in;
+  // transition: all 50ms ease-in;
+  transition-delay: 10ms;
 }
 .navLink {
   position: relative;

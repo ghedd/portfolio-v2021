@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import "./styles.scss"
 
 import {
@@ -6,6 +6,7 @@ import {
   createStyles,
   makeStyles,
   Theme,
+  ThemeProvider,
   useMediaQuery,
 } from "@material-ui/core"
 
@@ -17,7 +18,7 @@ import NavBar from "../../navbar"
 
 interface HeaderProps {
   siteTitle?: string
-  className?: string
+  // className?: string
 }
 // for navbar and menu drawer
 export type NavLink = {
@@ -30,67 +31,71 @@ export type SocialMedia = {
   link: string
 }
 
-const Header: React.FC<HeaderProps> = ({ siteTitle, className }) => {
-  const matches = useMediaQuery("(min-width: 600px)")
-  const { navFont } = useCustomTheme()
-  const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      root: {
-        backgroundColor: theme.palette.secondary.main,
-        transition: "box-shadow 200ms ease-out",
-        paddingTop: theme.spacing(1),
-        paddingBottom: theme.spacing(1),
-        minHeight: 45,
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      backgroundColor: theme.palette.secondary.main,
+      transition: "box-shadow 50ms ease-out",
+      paddingTop: theme.spacing(1),
+      paddingBottom: theme.spacing(1),
+      minHeight: 45,
+    },
+    appBar: {
+      top: 50,
+      boxShadow: "none",
+      transition: "all 50ms ease",
+      // scrollBehavior: "smooth",
+    },
+    brandBase: {
+      maxHeight: 60,
+      transition: "all 200ms ease-in",
+    },
+    brandShrink: {
+      width: "auto",
+      maxHeight: 50,
+    },
+    navLinks: {
+      "& > *": {
+        fontFamily: "Oswald",
+        fontWeight: theme.typography.fontWeightMedium,
+        textDecoration: "none",
+        color: theme.palette.text.primary,
+        textTransform: "uppercase",
+        marginRight: theme.spacing(2),
       },
-      appBar: {
-        position: "absolute",
-        top: 50,
-        boxShadow: "none",
-        // transition: "all 200ms ease-out",
-        scrollBehavior: "smooth",
-      },
-      brandBase: {
-        maxHeight: 60,
-        transition: "all 200ms ease-in",
-      },
-      brandSticky: {
-        width: "auto",
-        maxHeight: 50,
-      },
-      navLinks: {
-        "& > *": {
-          fontFamily: navFont.typography.fontFamily,
-          fontWeight: navFont.typography.fontWeightMedium,
-          textDecoration: "none",
-          color: theme.palette.text.primary,
-          textTransform: "uppercase",
-          marginRight: theme.spacing(2),
-        },
 
-        "& :last-child": {
-          marginRight: 0,
-        },
+      "& :last-child": {
+        marginRight: 0,
       },
-      navLink: {},
-      navLinksActive: {
-        color: theme.palette.primary.main,
-        "&::before": {
-          width: "100%",
-        },
+    },
+    navLink: {},
+    navLinksActive: {
+      color: theme.palette.primary.main,
+      "&::before": {
+        width: "100%",
       },
-      socialMedia: {
-        "& > *": {
-          marginRight: theme.spacing(0.5),
-        },
-        "& :last-child": {
-          marginRight: 0,
-        },
+    },
+    socialMedia: {
+      "& > *": {
+        marginRight: theme.spacing(0.5),
       },
-    })
-  )
+      "& :last-child": {
+        marginRight: 0,
+      },
+    },
+  })
+)
+
+const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
+  const matches = useMediaQuery("(min-width: 600px)")
+  const { navTheme } = useCustomTheme()
+
+  // let cssVar: React.CSSProperties = {}
 
   const classes = useStyles()
-  const { top } = useScroll()
+  const { offsetTop } = useScroll()
+  const navRef = useRef<HTMLElement>(null)
+  const sticky = navRef.current !== null && navRef.current.offsetTop
   const navLinks = [
     {
       nav: "home",
@@ -132,32 +137,34 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, className }) => {
     socialMedia: classes.socialMedia,
     navLinkActive: classes.navLinksActive,
     brand:
-      top >= 50
-        ? classes.brandSticky + " " + classes.brandBase
+      offsetTop > sticky
+        ? classes.brandShrink + " " + classes.brandBase
         : classes.brandBase,
   }
   return (
-    <header className={className} id="header">
-      <AppBar
-        className={`${classes.root} ${
-          top >= 50 ? classes.appBar + "stickyNav" : classes.appBar
-        }`}
-      >
-        {matches ? (
-          <NavBar
-            navLinks={navLinks}
-            socialMediaLinks={socialMedia}
-            navClasses={navClasses}
-          />
-        ) : (
-          <MenuDrawer
-            navLinks={navLinks}
-            socialMediaLinks={socialMedia}
-            navClasses={navClasses}
-          />
-        )}
-      </AppBar>
-    </header>
+    <AppBar
+      id="header"
+      className={`${classes.root} ${
+        offsetTop > sticky ? classes.appBar + "stickyNav" : classes.appBar
+      }`}
+      ref={navRef}
+      // style={cssVar}
+      // className="appBarRoot"
+    >
+      {matches ? (
+        <NavBar
+          navLinks={navLinks}
+          socialMediaLinks={socialMedia}
+          navClasses={navClasses}
+        />
+      ) : (
+        <MenuDrawer
+          navLinks={navLinks}
+          socialMediaLinks={socialMedia}
+          navClasses={navClasses}
+        />
+      )}
+    </AppBar>
   )
 }
 
