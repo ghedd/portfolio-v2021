@@ -4,6 +4,7 @@ module.exports = {
     description: `Hi! I'm Thinh (you can call me Eddie), a self-taught web developer, front-end focused. I use Figma to design websites and build them with React. Currently I'm really into Gatsby and Strapi (JAM stack).`,
     author: `@ThinhLe`,
   },
+  flags: { PRESERVE_WEBPACK_CACHE: true },
   plugins: [
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,

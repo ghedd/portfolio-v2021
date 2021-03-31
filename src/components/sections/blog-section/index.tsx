@@ -8,7 +8,7 @@ import {
   Theme,
   createStyles,
 } from "@material-ui/core"
-import SectionHeading from "../section-heading"
+import SectionHeading from "../../typography/section-heading"
 import BlogSectionDeco from "./blog-section-deco"
 
 const useStyles = makeStyles((theme: Theme) =>

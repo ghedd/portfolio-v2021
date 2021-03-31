@@ -1,6 +1,6 @@
 import { Container, createStyles, makeStyles } from "@material-ui/core"
 import React from "react"
-import SectionHeading from "../section-heading"
+import SectionHeading from "../../typography/section-heading"
 import ProjectContainer from "../../project-container"
 import ProjectsDeco from "./projects-deco"
 

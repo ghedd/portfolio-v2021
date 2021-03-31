@@ -12,7 +12,7 @@ import {
 import dummyImg from "../images/gatsby-astronaut.png"
 import Image from "../components/legacy/image"
 import MainLayout from "../components/layouts/main-layout"
-import SectionHeading from "../components/sections/section-heading"
+import SectionHeading from "../components/typography/section-heading"
 import Circle from "../components/decorations/circle"
 
 const useStyles = makeStyles((theme: Theme) =>

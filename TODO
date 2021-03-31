@@ -34,3 +34,4 @@ Later:
   ☐ figure out how to replace useScroll hook to prevent constant rendering while scrolling
   ☐ clean up about-page component
   ☐ refactor useCustomTheme
+  ☐ add SEO for about & contact pages

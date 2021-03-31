@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core"
 import ContactForm from "../components/contact-form"
 import MainLayout from "../components/layouts/main-layout"
-import SectionHeading from "../components/sections/section-heading"
+import SectionHeading from "../components/typography/section-heading"
 import ContactDemo from "../components/contact-demo"
 
 const useStyles = makeStyles((theme: Theme) =>

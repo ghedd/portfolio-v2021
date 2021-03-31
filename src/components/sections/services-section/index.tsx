@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core"
 import CodeIcon from "@material-ui/icons/Code"
 import DesignIcon from "@material-ui/icons/Palette"
-import SectionHeading from "../section-heading"
+import SectionHeading from "../../typography/section-heading"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
