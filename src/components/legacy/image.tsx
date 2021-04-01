@@ -21,7 +21,7 @@ interface ImageProps {
 const Image: React.FC<ImageProps> = ({ className }) => {
   const data = useStaticQuery(graphql`
     query {
-      file(relativePath: { eq: "low_pol_porttrait_themed-bgr.png" }) {
+      file(relativePath: { eq: "gatsby-astronaut.png" }) {
         childImageSharp {
           gatsbyImageData(layout: FULL_WIDTH)
         }

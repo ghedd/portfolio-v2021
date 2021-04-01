@@ -202,7 +202,7 @@ const ContactForm: React.FC = () => {
                 onChange={handleChange(fieldName)}
                 onBlur={() => checkBlankFields()}
                 inputRef={register(formRegister)}
-                error={!errors[fieldName] ? false : true}
+                // error={!errors[fieldName] ? false : true}
                 helperText={errors[fieldName]?.message}
               />
             </React.Fragment>

@@ -7,20 +7,18 @@ import {
 } from "@material-ui/core"
 import ProjectItem from "./project-item"
 import "./styles.scss"
+import { IGatsbyImageData } from "gatsby-plugin-image"
 
-type tag = {
-  name: string
-}
 export interface ProjectItemProps {
-  isOnProjectsPage?: boolean
-  projectTitle?: string
-  projectDesc?: string
-  coverPhotoURL?: string
-  techStack?: tag[]
+  title?: string
+  slug?: string
+  desc?: string
+  coverURL?: string
+  coverImg?: IGatsbyImageData
+  stack?: string[]
   featured?: boolean
   favorite?: boolean
-  figmaLink?: string
-  slug?: string
+  figmaURL?: string
 }
 interface ProjectsProps {
   projects?: ProjectItemProps[]
@@ -53,12 +51,12 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 const ProjectContainer: React.FC<ProjectsProps> = ({
   projects,
-  isOnProjectsPage,
+  isOnProjectsPage = false,
 }) => {
   // const matches = useMediaQuery("(min-width: 600px)")
 
   const classes = useStyles()
-  const featuredContent = {
+  const featuredContentMockup = {
     title:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, quia.",
     description:
@@ -68,42 +66,43 @@ const ProjectContainer: React.FC<ProjectsProps> = ({
   const demoItems = (
     <React.Fragment>
       <ProjectItem
-        isOnProjectsPage={isOnProjectsPage}
-        coverPhotoURL="https://picsum.photos/500.webp"
         featured
         favorite
-        projectTitle={featuredContent.title}
-        projectDesc={featuredContent.description}
+        title={featuredContentMockup.title}
+        desc={featuredContentMockup.description}
       />
-      <ProjectItem coverPhotoURL="https://picsum.photos/1080/960.webp" />
-      <ProjectItem coverPhotoURL="https://picsum.photos/300/400.webp" />
+      <ProjectItem />
+      <ProjectItem />
     </React.Fragment>
   )
+  console.log(projects)
 
   const items = (
     <React.Fragment>
-      {projects &&
-        projects.map(
-          ({
-            projectTitle,
-            projectDesc,
-            coverPhotoURL,
-            slug,
-            favorite,
-            featured,
-            // favorite,
-          }) => (
-            <ProjectItem
-              key={projectTitle}
-              isOnProjectsPage={isOnProjectsPage}
-              featured
-              favorite
-              coverPhotoURL={coverPhotoURL}
-              projectTitle={projectTitle}
-              projectDesc={projectDesc}
-            />
-          )
-        )}
+      {projects?.map(
+        ({
+          title,
+          desc,
+          coverURL,
+          slug,
+          favorite,
+          featured,
+          stack,
+          coverImg,
+        }) => (
+          <ProjectItem
+            key={title}
+            featured={featured}
+            favorite={favorite}
+            coverURL={coverURL}
+            title={title}
+            desc={desc}
+            slug={slug}
+            stack={stack}
+            coverImg={coverImg}
+          />
+        )
+      )}
     </React.Fragment>
   )
 

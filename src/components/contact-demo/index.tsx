@@ -34,6 +34,8 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 const ContactDemo: React.FC = () => {
+  // TODO: change this later
+
   const data: DemoImg = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "mail.jpg" }) {
