@@ -1,4 +1,5 @@
-import React, { useRef } from "react"
+import React, { lazy, Suspense } from "react"
+import useIntersectionObserver from "@react-hook/intersection-observer"
 import "./styles.scss"
 
 import {
@@ -6,53 +7,42 @@ import {
   createStyles,
   makeStyles,
   Theme,
-  ThemeProvider,
   useMediaQuery,
 } from "@material-ui/core"
 
 import { Github, LinkedIn, Twitter } from "../../../assets"
-import useScroll from "../../../hooks/useScroll"
-import useCustomTheme from "../../../hooks/useCustomTheme"
-import MenuDrawer from "../../menu-drawer"
-import NavBar from "../../navbar"
-
-interface HeaderProps {
-  siteTitle?: string
-  // className?: string
-}
-// for navbar and menu drawer
-export type NavLink = {
-  nav: string
-  link: string
-}
-export type SocialMedia = {
-  nav: string
-  icon: any
-  link: string
-}
+import useSSRCheck from "../../../hooks/useSSRCheck"
+// import MenuDrawer from "../../menu-drawer"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       backgroundColor: theme.palette.secondary.main,
-      transition: "box-shadow 50ms ease-out",
+      // transition: "box-shadow 50ms ease-out",
       paddingTop: theme.spacing(1),
       paddingBottom: theme.spacing(1),
+      [theme.breakpoints.down("xs")]: {
+        paddingTop: 0,
+        paddingBottom: 0,
+      },
       minHeight: 45,
+      transition: "all 150ms linear",
+      transitionDelay: "50ms",
     },
     appBar: {
-      top: 50,
+      position: "sticky",
+      top: 0,
       boxShadow: "none",
-      transition: "all 50ms ease",
-      // scrollBehavior: "smooth",
     },
     brandBase: {
-      maxHeight: 60,
-      transition: "all 200ms ease-in",
+      height: 60,
+      transition: "all 400ms ease-in-out",
+      transform: "scale(1)",
     },
     brandShrink: {
-      width: "auto",
-      maxHeight: 50,
+      // width: "auto",
+      // height: 50,
+      transform: "scale(0.9)",
     },
     navLinks: {
       "& > *": {
@@ -68,7 +58,6 @@ const useStyles = makeStyles((theme: Theme) =>
         marginRight: 0,
       },
     },
-    navLink: {},
     navLinksActive: {
       color: theme.palette.primary.main,
       "&::before": {
@@ -85,17 +74,30 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 )
-
+interface HeaderProps {
+  siteTitle?: string
+}
+// for navbar and menu drawer
+export type NavLink = {
+  nav: string
+  link: string
+}
+export type SocialMedia = {
+  nav: string
+  icon: any
+  link: string
+}
 const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
+  const { isSSR } = useSSRCheck()
+  const [ref, setRef] = React.useState<HTMLDivElement | null>(null)
+  const { isIntersecting } = useIntersectionObserver(ref)
   const matches = useMediaQuery("(min-width: 600px)")
-  const { navTheme } = useCustomTheme()
-
-  // let cssVar: React.CSSProperties = {}
 
   const classes = useStyles()
-  const { offsetTop } = useScroll()
-  const navRef = useRef<HTMLElement>(null)
-  const sticky = navRef.current !== null && navRef.current.offsetTop
+
+  // const { offsetTop } = useScroll()
+
+  // const sticky
   const navLinks = [
     {
       nav: "home",
@@ -136,36 +138,52 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
     navLinks: classes.navLinks,
     socialMedia: classes.socialMedia,
     navLinkActive: classes.navLinksActive,
-    brand:
-      offsetTop > sticky
-        ? classes.brandShrink + " " + classes.brandBase
-        : classes.brandBase,
+    brand: !isIntersecting
+      ? classes.brandBase + " " + classes.brandShrink
+      : classes.brandBase,
   }
-  return (
-    <AppBar
-      id="header"
-      className={`${classes.root} ${
-        offsetTop > sticky ? classes.appBar + "stickyNav" : classes.appBar
-      }`}
-      ref={navRef}
-      // style={cssVar}
-      // className="appBarRoot"
-    >
-      {matches ? (
-        <NavBar
-          navLinks={navLinks}
-          socialMediaLinks={socialMedia}
-          navClasses={navClasses}
-        />
-      ) : (
-        <MenuDrawer
-          navLinks={navLinks}
-          socialMediaLinks={socialMedia}
-          navClasses={navClasses}
-        />
-      )}
-    </AppBar>
+
+  const NavBar = lazy(() => import("../../navbar"))
+  const MenuDrawer = lazy(() => import("../../menu-drawer"))
+  const anchor = (
+    // NOTE: this is the anchor for
+    // intersection observer
+    // to modify header styles
+    // on scroll
+    <div
+      style={{ position: "absolute", top: 100, width: "100%", height: 5 }}
+      ref={setRef}
+    ></div>
   )
+  if (!isSSR)
+    return (
+      <React.Fragment>
+        {anchor}
+        <AppBar
+          className={`${classes.root} ${
+            isIntersecting ? classes.appBar : classes.appBar + "stickyNav"
+          }
+      `}
+        >
+          <Suspense fallback={<div />}>
+            {matches ? (
+              <NavBar
+                navLinks={navLinks}
+                socialMediaLinks={socialMedia}
+                navClasses={navClasses}
+              />
+            ) : (
+              <MenuDrawer
+                navLinks={navLinks}
+                socialMediaLinks={socialMedia}
+                navClasses={navClasses}
+              />
+            )}
+          </Suspense>
+        </AppBar>
+      </React.Fragment>
+    )
+  return null
 }
 
-export default Header
+export default React.memo(Header)

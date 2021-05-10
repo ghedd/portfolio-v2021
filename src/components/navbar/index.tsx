@@ -1,15 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
-import {
-  Container,
-  Toolbar,
-  Grid,
-  // makeStyles,
-  // createStyles,
-  // Theme,
-} from "@material-ui/core"
+import { Container, Toolbar, Grid } from "@material-ui/core"
 import { Brand } from "../../assets"
-// import useCustomTheme from "../../hooks/useCustomTheme"
 import { NavLink, SocialMedia } from "../layouts/header"
 
 interface NavBarProps {
@@ -29,16 +21,15 @@ const NavBar: React.FC<NavBarProps> = ({
         <Grid container alignItems="center" justify="space-between">
           <Grid item>
             <Link to="/">
-              <Brand
-                className={navClasses.brand}
-              />
+              <Brand className={navClasses.brand} />
             </Link>
           </Grid>
           <Grid item className={navClasses.navLinks}>
             {navLinks.map(item => (
               <Link
                 key={item.nav}
-                to={item.link}
+                to={item.link === "/" ? item.link : `${item.link}/`}
+                // to={item.link}
                 className="navLink"
                 activeClassName={navClasses.navLinkActive}
               >

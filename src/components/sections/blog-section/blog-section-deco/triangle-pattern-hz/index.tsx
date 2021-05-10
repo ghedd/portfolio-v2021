@@ -11,6 +11,22 @@ interface TrianglePatternHzProps {
   right?: number | "inherit"
   size?: number
 }
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    triangles: {
+      "& > *": {
+        marginRight: theme.spacing(1),
+      },
+      "& :last-child": {
+        marginRight: 0,
+      },
+    },
+    triangle: {
+      display: "block",
+      clipPath: "polygon(50% 100%, 0 0, 100% 0)",
+    },
+  })
+)
 const TrianglePatternHorizontal: React.FC<TrianglePatternHzProps> = ({
   itemArray,
   top = 0,
@@ -18,35 +34,27 @@ const TrianglePatternHorizontal: React.FC<TrianglePatternHzProps> = ({
   right = "inherit",
   size = 100,
 }) => {
-  const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      triangles: {
-        position: "absolute",
-        zIndex: 1,
-        // top: `${-top}%`,
-        left: `${left}%`,
-        right: `${right}%`,
-        display: "flex",
-        transform: `translateY(${top}%)`,
-        "& > *": {
-          marginRight: theme.spacing(1),
-        },
-        "& :last-child": {
-          marginRight: 0,
-        },
-      },
-      triangle: {
-        display: "block",
-        height: `clamp(${(size * 70) / 100}px, 5vw, ${size}px)`,
-        width: `clamp(${(size * 70) / 100}px, 5vw, ${size}px)`,
-        clipPath: "polygon(50% 100%, 0 0, 100% 0)",
-      },
-    })
-  )
+  const groupPos: React.CSSProperties = {
+    position: "absolute",
+    zIndex: 1,
+    // top: `${-top}%`,
+    left: `${left}%`,
+    right: `${right}%`,
+    display: "flex",
+    transform: `translateY(${top}%)`,
+  }
 
+  const itemProps = (idx: number) => {
+    return {
+      height: `clamp(${(size * 70) / 100}px, 5vw, ${size}px)`,
+      width: `clamp(${(size * 70) / 100}px, 5vw, ${size}px)`,
+      animationDuration: `calc(${idx} * 90ms + 3600ms)`,
+      animationDelay: `${idx} * 100ms`,
+    }
+  }
   const classes = useStyles()
   return (
-    <div className={classes.triangles}>
+    <div className={classes.triangles} style={groupPos}>
       {itemArray
         ? itemArray.map((item, idx) => (
             <svg
@@ -56,10 +64,7 @@ const TrianglePatternHorizontal: React.FC<TrianglePatternHzProps> = ({
               viewBox="0 0 66 63"
               fill="none"
               className={`${classes.triangle} triangleSpin`}
-              style={{
-                animationDuration: `calc(${idx} * 90ms + 3600ms)`,
-                animationDelay: `${idx} * 100ms`,
-              }}
+              style={itemProps(idx)}
             >
               <path
                 d="M32.9725 63L65.8577 0.273205H0.0873566L32.9725 63Z"

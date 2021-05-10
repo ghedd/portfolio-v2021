@@ -1,9 +1,8 @@
 .stickyNav {
-  top: 0;
-  position: fixed;
   // scroll-behavior: smooth;
-  // transition: all 50ms ease-in;
+  // transition: all 150ms ease-in;
   transition-delay: 10ms;
+  box-shadow: inherit;
 }
 .navLink {
   position: relative;

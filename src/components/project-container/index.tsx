@@ -28,11 +28,9 @@ interface ProjectsProps {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     projectContainer: {
-      // marginTop: "5rem",
-      // marginBottom: "5rem",
       position: "relative",
       width: "100%",
-      // gridTemplateColumns: `repeat(${ matches ? 3 : 1 }, 1fr)`,
+
       gridTemplateColumns: "1fr",
       [theme.breakpoints.up("sm")]: {
         gridTemplateColumns: "repeat(3, 1fr)",
@@ -40,9 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
         gap: `${theme.spacing(2.5)}px`,
       },
       gap: `${theme.spacing(2.5)}px 0`,
-      // gap: `${theme.spacing(2.5)}px ${matches ? theme.spacing(2.5) : 0}px`,
-      // columnGap: `${matches ? theme.spacing(1.5) : 0}`,
-      // columns: `${matches ? 3 : 1}`,
+
       "& > *": {
         marginBottom: theme.spacing(2.5),
       },
@@ -75,33 +71,43 @@ const ProjectContainer: React.FC<ProjectsProps> = ({
       <ProjectItem />
     </React.Fragment>
   )
-  console.log(projects)
 
   const items = (
     <React.Fragment>
       {projects?.map(
-        ({
-          title,
-          desc,
-          coverURL,
-          slug,
-          favorite,
-          featured,
-          stack,
-          coverImg,
-        }) => (
-          <ProjectItem
-            key={title}
-            featured={featured}
-            favorite={favorite}
-            coverURL={coverURL}
-            title={title}
-            desc={desc}
-            slug={slug}
-            stack={stack}
-            coverImg={coverImg}
-          />
-        )
+        (
+          { title, desc, coverURL, slug, favorite, featured, stack, coverImg },
+          idx
+        ) => {
+          if (favorite) {
+            return (
+              <ProjectItem
+                key={0}
+                featured={featured}
+                favorite={favorite}
+                coverURL={coverURL}
+                title={title}
+                desc={desc}
+                slug={slug}
+                stack={stack}
+                coverImg={coverImg}
+              />
+            )
+          }
+          return (
+            <ProjectItem
+              key={idx + 1}
+              featured={featured}
+              favorite={favorite}
+              coverURL={coverURL}
+              title={title}
+              desc={desc}
+              slug={slug}
+              stack={stack}
+              coverImg={coverImg}
+            />
+          )
+        }
       )}
     </React.Fragment>
   )

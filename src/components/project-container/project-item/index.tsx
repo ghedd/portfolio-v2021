@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: 120,
     },
     desc: {
-      width: "clamp(30ch, 18vw, 45ch)",
+      lineHeight: 1.8,
     },
     tag: {
       marginTop: theme.spacing(1),
@@ -70,7 +70,6 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
             variant="body2"
             component="p"
             paragraph
-            noWrap
           >
             {desc}
           </Typography>

@@ -11,9 +11,9 @@ const useScroll = () => {
       setTop( window.pageYOffset )
     }
     if ( !isSSR ) {
-      window.addEventListener( "scroll", handleScroll, { passive: true } )
+      window.addEventListener( "wheel", handleScroll, { passive: true } )
     }
-    return () => window.removeEventListener( "scroll", handleScroll )
+    return () => window.removeEventListener( "wheel", handleScroll )
 
   }, [isSSR] )
   return { offsetLeft, offsetTop }

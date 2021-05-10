@@ -1,12 +1,11 @@
 import React from "react"
-import MainLayout from "../components/layouts/main-layout"
+import MainLayout from "../components/layouts"
 import { Container } from "@material-ui/core"
 import SectionHeading from "../components/typography/section-heading"
-import ProjectContainer, {
-  ProjectItemProps,
-} from "../components/project-container"
+import ProjectContainer from "../components/project-container"
 import { graphql, PageProps } from "gatsby"
 import { IGatsbyImageData } from "gatsby-plugin-image"
+import SEO from "../components/seo"
 
 export type Tag = {
   tag: string
@@ -53,9 +52,7 @@ const ProjectsPage: React.FC<PageProps<ProjectsProps>> = ({ data }) => {
     ({ title, URL, codeURL, desc, cover, tools, slug }) => {
       const stack = tools.map(({ tag }) => tag)
       const coverURL = Object.values(cover.image.localFile).toString()
-      const coverImg = Object.values(
-        cover.image.localFile.childImageSharp
-      )[0]
+      const coverImg = Object.values(cover.image.localFile.childImageSharp)[0]
       // console.log(coverImg)
 
       return {
@@ -72,12 +69,13 @@ const ProjectsPage: React.FC<PageProps<ProjectsProps>> = ({ data }) => {
   )
 
   return (
-    <MainLayout>
+    <React.Fragment>
+      <SEO title="Projects" />
       <Container maxWidth="lg" style={{ position: "relative" }}>
         <SectionHeading heading="all projects" />
         <ProjectContainer isOnProjectsPage projects={projects} />
       </Container>
-    </MainLayout>
+    </React.Fragment>
   )
 }
 
@@ -91,8 +89,6 @@ export const PROJECTS_QUERRY = graphql`
         codeURL
         desc
         cover {
-          author
-          authorTribute
           image {
             localFile {
               publicURL

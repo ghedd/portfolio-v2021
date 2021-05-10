@@ -1,19 +1,33 @@
+const activeEnv =
+  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || "development"
+console.log(`Using environment config: '${activeEnv}'`)
+require("dotenv").config({
+  path: `.env.${activeEnv}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `teddlecodes`,
     description: `Hi! I'm Thinh (you can call me Eddie), a self-taught web developer, front-end focused. I use Figma to design websites and build them with React. Currently I'm really into Gatsby and Strapi (JAM stack).`,
-    author: `@ThinhLe`,
+    author: `@EddieLewis_92`,
+    siteUrl: process.env.SITE_URL,
   },
   flags: { PRESERVE_WEBPACK_CACHE: true },
   plugins: [
     {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/layouts/index.tsx`),
+      },
+    },
+    {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: `http://localhost:1337`,
+        apiURL: process.env.GASTBY_CMS_API_URL,
         queryLimit: 1000, // Default to 100
         contentTypes: [`projects`],
         //If using single types place them in this array.
-        // singleTypes: [`home-page`, `contact`],
+        singleTypes: [`bio`, `contact`, `home`],
         // Possibility to login with a strapi user, when content types are not publically available (optional).
         loginData: {
           identifier: "",
@@ -21,6 +35,7 @@ module.exports = {
         },
       },
     },
+    `gatsby-plugin-material-ui`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     {

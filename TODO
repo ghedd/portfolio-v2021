@@ -1,13 +1,24 @@
 
 Todo:
+  ☐ create more detailed desc in every single project page (i.e. shortDesc, desc)
+  ☐ upload cv & provide download file
+  ☐ create site map
   ✔ create main grid layout @done(21-03-04 20:01)
   ✔ find out what causes overflow on small viewport - nothing! @done(21-03-05 20:52)
   ✔ add gatsby-plugin-react-svg @done(21-03-05 20:52)
   ✔ create responsive header with mini brand logo & burger menu icon @done(21-03-07 23:00)
   ✔ separate navbar from header @done(21-03-07 23:30)
   ✔ get back to hero decoration later @done(21-03-09 22:21)
-✔ include commit message about changes in hero section @done(21-03-12 13:26)
-To-commits:
+  ✔ include commit message about changes in hero section @done(21-03-12 13:26)
+  To-commits:
+  ☐ add arial-label to drawer's menu icon
+  ☐ pull data to hero seciton
+  ☐ style 404 page (basic)
+  ☐ successfully pull data from heroku-strapi backend to projects-page
+  ☐ successfullly apply intersection observer hook to change headerstyle (onScroll hook deprecated then)
+  ☐ add gatsby-plugin-layout to avoid reloading layout on page change (old behavior removed by gatsby v^2)
+  ☐ fix column view on med - small screen
+  ☐ fix "navbar active link indicator disappearing after reload error" by adding a slash after each navlink (except for home link) 
   ✔ add navlink active style & improve hover style @done(21-03-23 21:31)
   ✔ add margin top and bottom of main section - main layout @done(21-03-23 21:31)
   ✔ fix service section styles: top - bottom margins & card height @done(21-03-23 21:31)
@@ -24,15 +35,17 @@ To-commits:
   ✔ fix service card height (responsive height) @done(21-03-25 11:39)
   ✔ feat: add react-hook-form; create contact page with form validation & 'netlify-form-ready' @done(21-03-26 23:54)
   ✔ styles: apply some minor style fixes/updates @done(21-03-26 23:54)
+  
 Later:
+  ☐ apply advanced SEO
   ☐ hero: reduce blur px
   ☐ hero: lower first triangle group to around 10% from top
-  ✔ change service hover bg color & min height of cards @done(21-03-22 20:21)
   ☐ change deco triangles to <svg> element instead of <span>
   ☐ create grid when there is any new blog article published
   ☐ blog section: move deco triangles upwards so not to be overlapped by content (firefox backdrop-filter issue)
   ☐ figure out how to replace useScroll hook to prevent constant rendering while scrolling
   ☐ clean up about-page component
   ☐ refactor useCustomTheme
-  ☐ add SEO for about & contact pages
   ☐ take a look at contact form component, some issues are probably there
+  ✔ add SEO for about, projects & contact pages @done(21-04-20 23:29)
+  ✔ change service hover bg color & min height of cards @done(21-03-22 20:21)

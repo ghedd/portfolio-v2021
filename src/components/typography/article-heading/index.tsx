@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme: Theme) =>
     heading: {
       position: "relative",
       fontFamily: "Oswald",
-      maxWidth: "15ch",
+      // maxWidth: "15ch",
       // marginLeft: "auto",
       // marginRight: "auto",
       marginBottom: "clamp(3rem, 5vw, 5rem)",

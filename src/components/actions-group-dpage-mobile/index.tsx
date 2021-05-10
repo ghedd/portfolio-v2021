@@ -46,17 +46,29 @@ const MobileActionsGroup: React.FC<ActionsGroupProps> = ({ actionsGroup }) => {
       aria-label="outlined primary button group"
       style={{ marginBottom: "clamp(3rem, 5vh, 4rem)" }}
     >
-      {actionsGroup.map((action, idx) => (
-        <Button
-          size="large"
-          // color="primary"
-          // component="span"
-          key={idx}
-          onClick={() => navigate(action.link)}
-        >
-          {iconSet[action.iconName].icon}
-        </Button>
-      ))}
+      {actionsGroup.map(
+        (action, idx) =>
+          action.link !== "N/A" &&
+          (action.link !== "/projects" ? (
+            <Button
+              size="large"
+              key={idx}
+              href={action.link}
+              target="__blank"
+              rel="noopener noreferer"
+            >
+              {iconSet[action.iconName].icon}
+            </Button>
+          ) : (
+            <Button
+              size="large"
+              key={idx}
+              onClick={() => navigate(action.link)}
+            >
+              {iconSet[action.iconName].icon}
+            </Button>
+          ))
+      )}
     </ButtonGroup>
   )
 }

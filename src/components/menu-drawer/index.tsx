@@ -146,6 +146,7 @@ const MenuDrawer: React.FC<MenuDrawerProps> = ({
             <IconButton
               onClick={toggleDrawer(anchor, true)}
               classes={{ root: classes.menuIcon }}
+              aria-label="menu button"
             >
               <MenuIcon />
             </IconButton>

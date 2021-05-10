@@ -1,6 +1,5 @@
 import React from "react"
 import { Container, createStyles, makeStyles, Theme } from "@material-ui/core"
-import useCustomTheme from "../../../hooks/useCustomTheme"
 import HeroCard from "./hero-card"
 import HeroDeco from "./hero-deco"
 const useStyles = makeStyles((theme: Theme) =>
@@ -19,6 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 )
+
 const Hero: React.FC = () => {
   const classes = useStyles()
 

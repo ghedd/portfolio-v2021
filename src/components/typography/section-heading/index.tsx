@@ -3,6 +3,7 @@ import React from "react"
 
 interface SectionHeadingProps {
   heading?: string
+  className?: string
 }
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,13 +31,14 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 const SectionHeading: React.FC<SectionHeadingProps> = ({
   heading = "heading",
+  className,
 }) => {
   const classes = useStyles()
   return (
     <React.Fragment>
       <Typography
         variant="h4"
-        className={classes.sectionHeading}
+        className={`${classes.sectionHeading} ${className}`}
         gutterBottom={true}
       >
         {heading}

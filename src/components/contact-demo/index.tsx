@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql, PageProps, useStaticQuery } from "gatsby"
-import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
+import { IGatsbyImageData } from "gatsby-plugin-image"
+import Img from "../../components/gatsby-img"
 import { createStyles, makeStyles, Theme, Typography } from "@material-ui/core"
 
 type DemoImg = {
@@ -33,7 +34,13 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 )
-const ContactDemo: React.FC = () => {
+
+interface ContactDemoProps {
+  imgSrc?: IGatsbyImageData
+  message: string
+}
+
+const ContactDemo: React.FC<ContactDemoProps> = ({ imgSrc, message }) => {
   // TODO: change this later
 
   const data: DemoImg = useStaticQuery(graphql`
@@ -48,9 +55,9 @@ const ContactDemo: React.FC = () => {
   const classes = useStyles()
   return (
     <div className={classes.contactDemo}>
-      <GatsbyImage
-        image={data?.file.childImageSharp.gatsbyImageData}
-        alt="contact me!"
+      <Img
+        src={imgSrc || data?.file.childImageSharp.gatsbyImageData}
+        alt="Contact me!"
         className={classes.demoImg}
       />
       <Typography
@@ -59,11 +66,7 @@ const ContactDemo: React.FC = () => {
         variant="body1"
         color="textPrimary"
       >
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore
-        sapiente libero ut! Quam provident ab sapiente laboriosam est sed
-        inventore illo autem. Obcaecati harum quibusdam commodi, quisquam vero
-        beatae doloremque asperiores earum libero iste suscipit quam ex eligendi
-        accusamus a.
+        {message}
       </Typography>
     </div>
   )

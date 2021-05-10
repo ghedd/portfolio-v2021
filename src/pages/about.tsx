@@ -1,25 +1,22 @@
 import React from "react"
 import {
-  Avatar,
-  Box,
   Container,
   createStyles,
   Grid,
   makeStyles,
   Theme,
-  Typography,
 } from "@material-ui/core"
-import dummyImg from "../images/gatsby-astronaut.png"
-import Image from "../components/legacy/image"
-import MainLayout from "../components/layouts/main-layout"
+import Image from "../components/gatsby-img"
+import MainLayout from "../components/layouts"
 import SectionHeading from "../components/typography/section-heading"
 import Circle from "../components/decorations/circle"
+import { graphql, PageProps } from "gatsby"
+import ReactMarkdown from "react-markdown"
+import { LocalFile } from "../@types/strapi-gatsby"
+import SEO from "../components/seo"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    layout: {
-      overflow: "hidden",
-    },
     deco: {
       position: "absolute",
       zIndex: 0,
@@ -45,6 +42,17 @@ const useStyles = makeStyles((theme: Theme) =>
         margin: 0,
       },
     },
+    bio: {
+      "& p": {
+        fontFamily: theme.typography.fontFamily,
+        color: "#fafafa",
+        fontSize: theme.typography.body1.fontSize,
+        lineHeight: theme.typography.body1.lineHeight,
+      },
+      "& * > strong": {
+        color: "#1ad6bb",
+      },
+    },
   })
 )
 
@@ -57,11 +65,32 @@ export const AboutPageDeco: React.FC = () => {
   )
 }
 
-const AboutPage: React.FC = () => {
+interface AboutProps {
+  strapiBio: {
+    bio: string
+    headshot: {
+      localFile: LocalFile
+    }
+  }
+}
+
+const AboutPage: React.FC<PageProps<AboutProps>> = ({
+  data: { strapiBio },
+}) => {
+  const { bio, headshot } = strapiBio
+  const {
+    localFile: {
+      childImageSharp: { gatsbyImageData },
+    },
+  } = headshot
+
+  console.log("rendered")
+
   const classes = useStyles()
 
   return (
-    <MainLayout className={classes.layout}>
+    <React.Fragment>
+      <SEO title="About" />
       <Container maxWidth="lg" style={{ position: "relative" }}>
         <AboutPageDeco />
         <SectionHeading heading="about me" />
@@ -74,26 +103,34 @@ const AboutPage: React.FC = () => {
           style={{ position: "relative", zIndex: 1 }}
         >
           <Grid item md={5} sm={12} xs={12}>
-            <Image className={classes.profileImg} />
+            <Image
+              src={gatsbyImageData}
+              alt="My profile photo"
+              className={classes.profileImg}
+            />
           </Grid>
           <Grid item md={7} sm={12} xs={12}>
-            <Typography variant="body1" component="p" color="textPrimary">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Blanditiis vero quod nulla totam voluptatibus voluptates delectus
-              eaque, voluptatem officia illo, ab cupiditate magni aliquid
-              explicabo eveniet pariatur quia minus ex libero quos! Aliquam
-              laborum eveniet aut doloremque ratione vel minus saepe. Ducimus
-              placeat tempora, deserunt quo deleniti quibusdam, illum delectus
-              necessitatibus praesentium accusamus quaerat, aperiam consequatur
-              dicta ut expedita aliquid debitis maxime dolorem? Quam, quasi
-              temporibus asperiores repellat cumque impedit sint neque ullam
-              odit iure? Expedita voluptates fugit excepturi eos.
-            </Typography>
+            <ReactMarkdown className={classes.bio}>{bio}</ReactMarkdown>
           </Grid>
         </Grid>
       </Container>
-    </MainLayout>
+    </React.Fragment>
   )
 }
+
+export const ABOUT_PAGE_QUERY = graphql`
+  {
+    strapiBio {
+      bio
+      headshot {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
+        }
+      }
+    }
+  }
+`
 
 export default AboutPage

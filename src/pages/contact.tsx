@@ -7,9 +7,12 @@ import {
   Theme,
 } from "@material-ui/core"
 import ContactForm from "../components/contact-form"
-import MainLayout from "../components/layouts/main-layout"
+import MainLayout from "../components/layouts"
 import SectionHeading from "../components/typography/section-heading"
 import ContactDemo from "../components/contact-demo"
+import { graphql, PageProps } from "gatsby"
+import { LocalFile } from "../@types/strapi-gatsby"
+import SEO from "../components/seo"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,10 +30,23 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-const ContactPage: React.FC = () => {
+interface ContactProps {
+  strapiContact: {
+    message: string
+    illustration: {
+      localFile: LocalFile
+    }
+  }
+}
+const ContactPage: React.FC<PageProps<ContactProps>> = ({
+  data: { strapiContact },
+}) => {
+  const { message, illustration } = strapiContact
+  const illsImg = illustration.localFile.childImageSharp.gatsbyImageData
   const classes = useStyles()
   return (
-    <MainLayout>
+    <React.Fragment>
+      <SEO title="Contact" />
       <Container maxWidth="lg">
         <SectionHeading heading="contact" />
         <Grid
@@ -45,12 +61,26 @@ const ContactPage: React.FC = () => {
             <ContactForm />
           </Grid>
           <Grid item md={5} sm={12} xs={12}>
-            <ContactDemo />
+            <ContactDemo message={message} imgSrc={illsImg} />
           </Grid>
         </Grid>
       </Container>
-    </MainLayout>
+    </React.Fragment>
   )
 }
 
+export const CONTACT_PAGE_QUERY = graphql`
+  {
+    strapiContact {
+      message
+      illustration {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
+        }
+      }
+    }
+  }
+`
 export default ContactPage

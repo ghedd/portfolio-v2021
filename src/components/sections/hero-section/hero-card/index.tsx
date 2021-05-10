@@ -1,5 +1,5 @@
 import React from "react"
-import { navigate } from "gatsby"
+import { graphql, navigate, useStaticQuery } from "gatsby"
 import {
   Button,
   Card,
@@ -13,11 +13,11 @@ import {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    heroElement: {
+    heroCard: {
       position: "relative",
       background: "purple",
-      // minWidth: 275,
-      width: "clamp(275px, 90vw, 800px)",
+      minWidth: 275,
+      width: "clamp(275px, 90vw, 600px)",
       minHeight: "20vh",
       zIndex: 1,
       borderRadius: 8,
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
       maxWidth: "15ch",
       marginLeft: "auto",
       marginRight: "auto",
-      fontSize: "clamp(2.5rem, 10vw, 4rem)",
+      fontSize: "clamp(1.5rem, 10vw, 2.5rem)",
       fontWeight: theme.typography.fontWeightBold,
     },
     heroActionContainer: {
@@ -45,10 +45,20 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 const HeroCard: React.FC = () => {
+  const data = useStaticQuery(graphql`
+    {
+      strapiHome {
+        hero
+        subtitle
+      }
+    }
+  `)
+  const { hero, subtitle } = data.strapiHome
+  console.log(data)
 
   const classes = useStyles()
   return (
-    <Card className={classes.heroElement}>
+    <Card className={classes.heroCard}>
       <CardContent>
         <Typography
           variant="h1"
@@ -56,10 +66,10 @@ const HeroCard: React.FC = () => {
           className={classes.heroTitle}
           gutterBottom={true}
         >
-          Call to actions goes here
+          {hero}
         </Typography>
         <Typography variant="subtitle1" gutterBottom={true} align="center">
-          Hi, I’m Eddie. <br />I help design and build modern websites.
+          {subtitle}
         </Typography>
       </CardContent>
       <CardActions className={classes.heroActionContainer}>
