@@ -11,14 +11,14 @@ Todo:
   ✔ get back to hero decoration later @done(21-03-09 22:21)
   ✔ include commit message about changes in hero section @done(21-03-12 13:26)
   To-commits:
-  ☐ add arial-label to drawer's menu icon
-  ☐ pull data to hero seciton
-  ☐ style 404 page (basic)
-  ☐ successfully pull data from heroku-strapi backend to projects-page
-  ☐ successfullly apply intersection observer hook to change headerstyle (onScroll hook deprecated then)
-  ☐ add gatsby-plugin-layout to avoid reloading layout on page change (old behavior removed by gatsby v^2)
-  ☐ fix column view on med - small screen
-  ☐ fix "navbar active link indicator disappearing after reload error" by adding a slash after each navlink (except for home link) 
+  ✔ add arial-label to drawer's menu icon @done(21-05-09 21:14)
+  ✔ pull data to hero seciton @done(21-05-09 21:14)
+  ✔ style 404 page (basic) @done(21-05-09 21:14)
+  ✔ successfully pull data from heroku-strapi backend to projects-page @done(21-05-09 21:14)
+  ✔ successfullly apply intersection observer hook to change headerstyle (onScroll hook deprecated then) @done(21-05-09 21:14)
+  ✔ add gatsby-plugin-layout to avoid reloading layout on page change (old behavior removed by gatsby v^2) @done(21-05-09 21:14)
+  ✔ fix column view on med - small screen @done(21-05-09 21:14)
+  ✔ fix "navbar active link indicator disappearing after reload error" by adding a slash after each navlink (except for home link) @done(21-05-09 21:14)
   ✔ add navlink active style & improve hover style @done(21-03-23 21:31)
   ✔ add margin top and bottom of main section - main layout @done(21-03-23 21:31)
   ✔ fix service section styles: top - bottom margins & card height @done(21-03-23 21:31)
